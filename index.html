@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC Study Portal - Dark Edition</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #f8fafc;
+        }
+
+        .container {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            width: 100%;
+            max-width: 460px;
+            padding: 35px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header .icon-badge {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 16px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            color: #fff;
+            margin-bottom: 12px;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        p.subtitle {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* Password Form Styling */
+        .login-box {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding: 14px 45px 14px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            font-size: 15px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .password-container input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+        }
+
+        .toggle-btn {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #64748b;
+            transition: color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            color: #f8fafc;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .error-msg {
+            color: #f87171;
+            font-size: 13px;
+            text-align: center;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            display: none;
+        }
+
+        .divider {
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+            margin: 4px 0;
+            position: relative;
+        }
+
+        /* Message Owner Button Styling */
+        .owner-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            text-decoration: none;
+            padding: 13px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .owner-btn:hover {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #34d399;
+            transform: translateY(-2px);
+            color: #6ee7b7;
+        }
+
+        /* Content Area Styling */
+        .content-box {
+            display: none;
+        }
+
+        .link-list {
+            list-style: none;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-item a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .link-item a:hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.4);
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        .pdf-icon {
+            color: #f43f5e;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: #64748b;
+            border: none;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: color 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logout-btn:hover {
+            color: #f87171;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- ১. পাসওয়ার্ড সেকশন (লগইন এবং মেসেজ ওনার) -->
+        <div id="loginSection" class="login-box">
+            <div class="header">
+                <div class="icon-badge"><i class="fa-solid fa-shield-halved"></i></div>
+                <h2>সুরক্ষিত প্রবেশদ্বার</h2>
+                <p class="subtitle">পিডিএফ ড্রাইভের লিংকগুলো পেতে পাসওয়ার্ড লিখুন</p>
+            </div>
+            
+            <div class="password-container">
+                <input type="password" id="passInput" placeholder="পাসওয়ার্ড লিখুন...">
+                <i class="fa-solid fa-eye toggle-btn" id="toggleIcon" onclick="togglePassword()"></i>
+            </div>
+            
+            <button class="btn" onclick="checkPassword()">Submit Access Key</button>
+            <div id="errorMsg" class="error-msg"><i class="fa-solid fa-circle-exclamation"></i> ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।</div>
+
+            <div class="divider">অথবা</div>
+
+            <!-- Message Owner Button (পাসওয়ার্ড চাওয়ার জন্য) -->
+            <a id="ownerMailBtn" class="owner-btn" href="#" target="_blank">
+                <i class="fa-solid fa-paper-plane"></i> Message Owner for Password
+            </a>
+        </div>
+
+        <!-- ২. লিংক সেকশন (পাসওয়ার্ড সঠিক হলে দেখা যাবে) -->
+        <div id="contentSection" class="content-box">
+            <div class="header">
+                <div class="icon-badge"><i class="fa-solid fa-folder-open"></i></div>
+                <h2>HSC Resource Portal</h2>
+                <p class="subtitle">প্রয়োজনীয় সব ড্রাইভ ফাইল এক জায়গায়</p>
+            </div>
+
+            <ul class="link-list">
+                <li class="link-item">
+                    <a href="https://drive.google.com/file/d/YOUR_PDF_LINK_1/view" target="_blank">
+                        <span><i class="fa-solid fa-file-pdf pdf-icon"></i> পদার্থবিজ্ঞান ১ম পত্র নোট</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 12px; opacity: 0.6;"></i>
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://drive.google.com/file/d/YOUR_PDF_LINK_2/view" target="_blank">
+                        <span><i class="fa-solid fa-file-pdf pdf-icon"></i> রসায়ন ১ম পত্র গাইড</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 12px; opacity: 0.6;"></i>
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://drive.google.com/file/d/YOUR_PDF_LINK_3/view" target="_blank">
+                        <span><i class="fa-solid fa-file-pdf pdf-icon"></i> উচ্চতর গণিত সাজেশন্স</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 12px; opacity: 0.6;"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </div>
+    </div>
+
+    <script>
+        // ================= CONFIGURATION =================
+        // ১. আপনার সিক্রেট পাসওয়ার্ড এখানে দিন:
+        const CURRENT_PASSWORD = "hsc2026password"; 
+        
+        // ২. আপনার জিমেইল এড্রেস এখানে দিন:
+        const OWNER_EMAIL = "your.email@gmail.com"; 
+        // =================================================
+
+        // মেসেজের বিষয় এবং বডি সেটআপ
+        const emailSubject = encodeURIComponent("Request for Password");
+        const emailBody = encodeURIComponent("Hello Owner,\n\nPlease send me the password to access the HSC PDF Drive links.\n\nThank you!");
+        
+        // অটোমেটিক জিমেইল লিঙ্ক রেডি
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${OWNER_EMAIL}&su=${emailSubject}&body=${emailBody}`;
+        document.getElementById("ownerMailBtn").href = gmailUrl;
+
+        // পেজ লোড হলে সেভ করা পাসওয়ার্ড চেক করবে
+        window.onload = function() {
+            const savedPassword = localStorage.getItem("userPassedKey");
+            
+            if (savedPassword === CURRENT_PASSWORD) {
+                showContent();
+            } else {
+                localStorage.removeItem("userPassedKey");
+                showLogin();
+            }
+        };
+
+        // পাসওয়ার্ড দেখা/লুকানোর বাটন ফাংশন
+        function togglePassword() {
+            const passInput = document.getElementById("passInput");
+            const toggleIcon = document.getElementById("toggleIcon");
+
+            if (passInput.type === "password") {
+                passInput.type = "text";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passInput.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+        }
+
+        // পাসওয়ার্ড ভ্যালিডেশন চেক
+        function checkPassword() {
+            const inputVal = document.getElementById("passInput").value;
+            const errorMsg = document.getElementById("errorMsg");
+
+            if (inputVal === CURRENT_PASSWORD) {
+                localStorage.setItem("userPassedKey", inputVal);
+                errorMsg.style.display = "none";
+                showContent();
+            } else {
+                errorMsg.style.display = "block";
+            }
+        }
+
+        function showContent() {
+            document.getElementById("loginSection").style.display = "none";
+            document.getElementById("contentSection").style.display = "block";
+        }
+
+        function showLogin() {
+            document.getElementById("loginSection").style.display = "flex";
+            document.getElementById("contentSection").style.display = "none";
+        }
+
+        function logout() {
+            localStorage.removeItem("userPassedKey");
+            location.reload();
+        }
+    </script>
+</body>
+</html>
