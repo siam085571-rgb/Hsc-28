@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -276,7 +276,9 @@
                 <p class="subtitle">প্রয়োজনীয় সব ড্রাইভ ফাইল এক জায়গায়</p>
             </div>
 
-            <ul class="link-list">
+            <!-- এই তালিকার ভেতরের ট্যাগগুলো অ্যাডমিন প্যানেল থেকে অটোমেটিক আপডেট হবে -->
+            <ul class="link-list" id="linkList">
+                <!-- LINK_START -->
                 <li class="link-item">
                     <a href="https://drive.google.com/file/d/YOUR_PDF_LINK_1/view" target="_blank">
                         <span><i class="fa-solid fa-file-pdf pdf-icon"></i> পদার্থবিজ্ঞান ১ম পত্র নোট</span>
@@ -285,16 +287,11 @@
                 </li>
                 <li class="link-item">
                     <a href="https://drive.google.com/file/d/YOUR_PDF_LINK_2/view" target="_blank">
-                        <span><i class="fa-solid fa-file-pdf pdf-icon"></i> রসায়ন ১ম পত্র গাইড</span>
+                        <span><i class="fa-solid fa-file-pdf pdf-icon"></i> রসায়ন ১ম পত্র গাইড</span>
                         <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 12px; opacity: 0.6;"></i>
                     </a>
                 </li>
-                <li class="link-item">
-                    <a href="https://drive.google.com/file/d/YOUR_PDF_LINK_3/view" target="_blank">
-                        <span><i class="fa-solid fa-file-pdf pdf-icon"></i> উচ্চতর গণিত সাজেশন্স</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 12px; opacity: 0.6;"></i>
-                    </a>
-                </li>
+                <!-- LINK_END -->
             </ul>
 
             <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
@@ -376,4 +373,4 @@
         }
     </script>
 </body>
-</html>
+</html>      
