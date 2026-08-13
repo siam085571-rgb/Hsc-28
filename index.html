@@ -1,4 +1,4 @@
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -155,7 +155,6 @@
             color: #64748b;
             font-size: 12px;
             margin: 4px 0;
-            position: relative;
         }
 
         /* Message Owner Button Styling */
@@ -244,7 +243,7 @@
 <body>
 
     <div class="container">
-        <!-- ১. পাসওয়ার্ড সেকশন (লগইন এবং মেসেজ ওনার) -->
+        <!-- ১. পাসওয়ার্ড সেকশন -->
         <div id="loginSection" class="login-box">
             <div class="header">
                 <div class="icon-badge"><i class="fa-solid fa-shield-halved"></i></div>
@@ -262,13 +261,13 @@
 
             <div class="divider">অথবা</div>
 
-            <!-- Message Owner Button (পাসওয়ার্ড চাওয়ার জন্য) -->
-            <a id="ownerMailBtn" class="owner-btn" href="#" target="_blank">
+            <!-- Message Owner Button (সরাসরি জিমেইল অ্যাপ খুলবে) -->
+            <a id="ownerMailBtn" class="owner-btn" href="#">
                 <i class="fa-solid fa-paper-plane"></i> Message Owner for Password
             </a>
         </div>
 
-        <!-- ২. লিংক সেকশন (পাসওয়ার্ড সঠিক হলে দেখা যাবে) -->
+        <!-- ২. লিংক সেকশন -->
         <div id="contentSection" class="content-box">
             <div class="header">
                 <div class="icon-badge"><i class="fa-solid fa-folder-open"></i></div>
@@ -276,11 +275,14 @@
                 <p class="subtitle">প্রয়োজনীয় সব ড্রাইভ ফাইল এক জায়গায়</p>
             </div>
 
-            <!-- এই তালিকার ভেতরের ট্যাগগুলো অ্যাডমিন প্যানেল থেকে অটোমেটিক আপডেট হবে -->
             <ul class="link-list" id="linkList">
                 <!-- LINK_START -->
-                
-                
+                <li class="link-item">
+                    <a href="https://drive.google.com/file/d/YOUR_PDF_LINK_1/view" target="_blank">
+                        <span><i class="fa-solid fa-file-pdf pdf-icon"></i> পদার্থবিজ্ঞান ১ম পত্র নোট</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 12px; opacity: 0.6;"></i>
+                    </a>
+                </li>
                 <!-- LINK_END -->
             </ul>
 
@@ -291,24 +293,23 @@
     <script>
         // ================= CONFIGURATION =================
         // ১. আপনার সিক্রেট পাসওয়ার্ড এখানে দিন:
-        const CURRENT_PASSWORD = "aqua"; 
-        
-        // ২. আপনার জিমেইল এড্রেস এখানে দিন:
+        const CURRENT_PASSWORD = "konosuba"; 
+
+        // ২. আপনার জিমেইল আইডি এখানে দিন:
         const OWNER_EMAIL = "isiam0987667@gmail.com"; 
         // =================================================
 
-        // মেসেজের বিষয় এবং বডি সেটআপ
-        const emailSubject = encodeURIComponent("Request for Password");
+        // ইমেইল অ্যাপের জন্য সাবজেক্ট ও বডি তৈরি করা
+        const emailSubject = encodeURIComponent("Request for Access Password");
         const emailBody = encodeURIComponent("Hello Owner,\n\nPlease send me the password to access the HSC PDF Drive links.\n\nThank you!");
-        
-        // অটোমেটিক জিমেইল লিঙ্ক রেডি
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${OWNER_EMAIL}&su=${emailSubject}&body=${emailBody}`;
-        document.getElementById("ownerMailBtn").href = gmailUrl;
 
-        // পেজ লোড হলে সেভ করা পাসওয়ার্ড চেক করবে
+        // mailto: এর মাধ্যমে সরাসরি ডিভাইসের Gmail App চালু হবে
+        const mailtoUrl = `mailto:${OWNER_EMAIL}?subject=${emailSubject}&body=${emailBody}`;
+        document.getElementById("ownerMailBtn").href = mailtoUrl;
+
+        // অটো লগইন চেক
         window.onload = function() {
             const savedPassword = localStorage.getItem("userPassedKey");
-            
             if (savedPassword === CURRENT_PASSWORD) {
                 showContent();
             } else {
@@ -317,7 +318,7 @@
             }
         };
 
-        // পাসওয়ার্ড দেখা/লুকানোর বাটন ফাংশন
+        // পাসওয়ার্ড দেখা/লুকানোর বাটন
         function togglePassword() {
             const passInput = document.getElementById("passInput");
             const toggleIcon = document.getElementById("toggleIcon");
@@ -333,7 +334,7 @@
             }
         }
 
-        // পাসওয়ার্ড ভ্যালিডেশন চেক
+        // পাসওয়ার্ড চেক করা
         function checkPassword() {
             const inputVal = document.getElementById("passInput").value;
             const errorMsg = document.getElementById("errorMsg");
@@ -363,4 +364,4 @@
         }
     </script>
 </body>
-</html>      
+</html>
